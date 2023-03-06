@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       parallel {
-        stage('linux-armv6') {
+        stage('pinctmacp08-mac-jenkins-slave') {
           agent {label 'linux-armv6'}
           steps {
             sh 'go install dpctl'
