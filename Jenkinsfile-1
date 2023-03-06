@@ -4,45 +4,45 @@ pipeline {
     stage('build') {
       parallel {
         stage('pinctmacp08-mac-jenkins-slave') {
-          agent {label 'linux-armv6'}
+          agent {label 'pinctmacp08-mac-jenkins-slave'}
           steps {
-            sh 'go install dpctl'
+              echo 'Hello World1'
           }
         }
-        stage('darwin-amd64') {
-          agent {label 'darwin-amd64'}
+        stage('pinctmacp09-mac-jenkins-slave') {
+          agent {label 'pinctmacp09-mac-jenkins-slave'}
           steps {
-            sh 'go install dpctl'
+             echo 'Hello World2'
           }
         }
-        stage('linux-amd64') {
+        /*stage('linux-amd64') {
           agent {label 'linux-amd64'}
           steps {
             sh 'go install dpctl'
           }
-        }
+        }*/
       }
     }
     stage('run') {
       parallel {
-        stage('linux-armv6') {
-          agent {label 'linux-armv6'}
+        stage('pinctmacp08-mac-jenkins-slave') {
+          agent {label 'pinctmacp08-mac-jenkins-slave'}
           steps {
-            sh 'dpctl'
+             echo 'Hello World1'
           }
         }
-        stage('darwin-amd64') {
-          agent {label 'darwin-amd64'}
+        stage('pinctmacp09-mac-jenkins-slave') {
+          agent {label 'pinctmacp09-mac-jenkins-slave'}
           steps {
-            sh 'dpctl'
+             echo 'Hello World2'
           }
         }
-        stage('linux-amd64') {
+        /*stage('linux-amd64') {
           agent {label 'linux-amd64'}
           steps {
             sh 'dpctl'
           }
-        }
+        }*/
       }
     }
   }
